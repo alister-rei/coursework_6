@@ -1,0 +1,26 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<div class="text-center container">
+    <div class="card col-8">
+        <div class="card-body">
+            <h5 class="card-title">Can yoy delete log:</h5>
+            <p class="card-text mb-3">time: {{ object.time }}</p>
+            <p class="card-text mb-3">status: {{ object.status }}</p>
+            <p class="card-text mb-3">server_response: {{ object.server_response }}</p>
+            <a href="{% url 'distribution:view' object.mailing.pk %}" type="button"
+               class="btn btn-sm btn-outline-secondary">Mailing View</a>
+        </div>
+        <div class="card-footer">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Delete</button>
+                <a type="button" href="{% url 'distribution:log_list'%}"
+                   class="btn btn-lg btn-block btn-outline-primary">return</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
