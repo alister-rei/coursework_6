@@ -32,24 +32,24 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in three_random_posts %}
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for post in three_random_posts %}
-
-    <div class="col">
-        <div class="card h-100">
-            <img src="{% my_media_tag post.image %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ post.title|title }}</h5>
-                <p class="card-text">{{ post.description|truncatechars:64 }}</p>
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'blog:view' post.pk %}" class="btn btn-primary">Подробнее</a>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% my_media_tag post.image %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title|title }}</h5>
+                    <p class="card-text">{{ post.description|truncatechars:64 }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'blog:view' post.pk %}" class="btn btn-primary">Подробнее</a>
+                </div>
             </div>
         </div>
+
+        {% endfor %}
     </div>
-
-    {% endfor %}
 </div>
-
 {% endblock %}
