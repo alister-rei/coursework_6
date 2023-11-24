@@ -13,7 +13,10 @@
 - EMAIL_HOST_USER='your_email@yandex.ru'
 - EMAIL_HOST_PASSWORD='your_yandex_smtp_password'
 
-## В файле `users/management/commands/csu.py` команда для создания суперпользователя с паролем 12345 . запустить команду `python manage.py csu` 
+## В файле `users/management/commands/csu.py` команда для создания суперпользователя с паролем 12345 . запустить команду `python manage.py csu`
+
+## Запустить крон в ручную командой `python manage.py crontab add`.
+
 
 ## Курсовая 6 :
 
