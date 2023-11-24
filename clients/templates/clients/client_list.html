@@ -1,8 +1,8 @@
 {% extends 'users/base.html' %}
-
+{% load my_tags %}
 {% block content %}
 
-{% if not request.user.is_staff %}
+{% if not user|has_group:"manager" %}
 <div class="text-center container">
     <a class="btn btn-primary" href="{% url 'clients:create' %}" type="button">Add Client</a>
 </div>
@@ -40,7 +40,7 @@
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <a href="{% url 'clients:view' client.pk %}" type="button"
                        class="btn btn-sm btn-outline-secondary">View</a>
-                    {% if not request.user.is_staff %}
+                    {% if not user|has_group:"manager" %}
                     <a href="{% url 'clients:edit' client.pk %}" type="button"
                        class="btn btn-sm btn-outline-secondary">Edit</a>
                     <a href="{% url 'clients:delete' client.pk %}" type="button"
