@@ -1,9 +1,9 @@
 {% extends 'users/base.html' %}
-{% block content %}
 {% load my_tags %}
+{% block content %}
 
 {% if request.user.is_authenticated %}
-{% if not request.user.is_staff %}
+{% if not user|has_group:"manager" %}
 <div class="text-center container">
     <a class="btn btn-primary" href="{% url 'blog:create' %}" type="button">Create Post</a>
 </div>
@@ -27,9 +27,9 @@
 
                             <a href="{% url 'blog:view' object.pk %}" type="button"
                                class="btn btn-sm btn-outline-secondary">View</a>
-                            {% if request.user == object.owner or request.user.is_staff %}
                             {% if request.user.is_authenticated %}
-                            {% if not request.user.is_staff %}
+                            {% if not user|has_group:"manager" %}
+                            {% if user == object.owner or request.user.is_staff %}
                             <a href="{% url 'blog:edit' object.pk %}" type="button"
                                class="btn btn-sm btn-outline-secondary">Edit</a>
                             <a href="{% url 'blog:delete' object.pk %}" type="button"
