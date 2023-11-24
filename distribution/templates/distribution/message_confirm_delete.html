@@ -1,0 +1,26 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card col-8">
+        <div class="card-body">
+            <h5 class="card-title">Can yoy delete message</h5>
+            <h5 class="card-title">title: {{ message.title }}</h5>
+            <p class="card-title">text: {{ message.text }}</p>
+            {% if request.user.is_staff %}
+            <p class="card-text mb-3">owner: {{ message.owner }}</p>
+            {% endif %}
+        </div>
+        <div class="card-footer">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Delete</button>
+                <a type="button" href="{% url 'distribution:message_list'%}"
+                   class="btn btn-lg btn-block btn-outline-primary">return</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
