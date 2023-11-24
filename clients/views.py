@@ -57,8 +57,9 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        if self.object.owner != self.request.user or self.request.user.is_staff:
-            raise Http404
+        if not self.request.user.is_superuser:
+            if self.object.owner != self.request.user or self.request.user.filter(groups__name='manager').exists():
+                raise Http404
         return self.object
 
     def get_success_url(self):
@@ -74,6 +75,7 @@ class ClientDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        if self.object.owner != self.request.user or self.request.user.is_staff:
-            raise Http404
+        if not self.request.user.is_superuser:
+            if self.object.owner != self.request.user or self.request.user.filter(groups__name='manager').exists():
+                raise Http404
         return self.object

@@ -7,6 +7,7 @@ from django.contrib.auth.views import PasswordResetDoneView
 from django.core.cache import cache
 
 from django.core.mail import send_mail
+from django.http import Http404
 from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -150,6 +151,9 @@ class UserUpdateView(UpdateView, LoginRequiredMixin):
 
     def get_object(self, queryset=None):
         """ Позволяет делать необязательным передачу pk объекта """
+        if not self.request.user.is_superuser:
+            if self.object.owner != self.request.user or self.request.user.filter(groups__name='manager').exists():
+                raise Http404
         return self.request.user
 
 
@@ -217,7 +221,6 @@ def regenerate_password(request):
             message=f'Ваш новый пароль: {new_password}',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[email],
-            fail_silently=False,
         )
 
         return redirect(reverse('users:main'))
