@@ -19,8 +19,9 @@ class MailingSettingsForm(StyleFormMixin, ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         owner = kwargs.pop('initial').get('owner')
-        self.fields['clients'].queryset = Client.objects.all().filter(owner=owner)
-        self.fields['message'].queryset = Message.objects.all().filter(owner=owner)
+        if not owner.is_superuser:
+            self.fields['clients'].queryset = Client.objects.all().filter(owner=owner)
+            self.fields['message'].queryset = Message.objects.all().filter(owner=owner)
 
 
 class MessageForm(StyleFormMixin, ModelForm):
