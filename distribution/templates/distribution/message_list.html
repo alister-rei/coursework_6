@@ -1,8 +1,8 @@
 {% extends 'users/base.html' %}
-
+{% load my_tags %}
 {% block content %}
 
-{% if not user.is_staff %}
+{% if not user|has_group:"manager" %}
 <div class="text-center container">
     <a class="btn btn-primary" href="{% url 'distribution:message_create' %}" type="button">Add Message</a>
 </div>
@@ -36,7 +36,7 @@
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <a href="{% url 'distribution:message_view' message.pk %}" type="button"
                        class="btn btn-sm btn-outline-secondary">View</a>
-                    {% if not user.is_staff %}
+                    {% if not user|has_group:"manager" %}
                     <a href="{% url 'distribution:message_edit' message.pk %}" type="button"
                        class="btn btn-sm btn-outline-secondary">Edit</a>
                     <a href="{% url 'distribution:message_delete' message.pk %}" type="button"
