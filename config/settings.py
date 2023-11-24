@@ -160,7 +160,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 CRONJOBS = [
-    ('*/1 * * * *', 'distribution.cron.sort_mailing')
+    ('*/5 * * * *', 'distribution.cron.sort_mailing')
 ]
 
 CACHE_ENABLED = True
