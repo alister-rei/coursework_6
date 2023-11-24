@@ -1,5 +1,5 @@
 {% extends 'users/base.html' %}
-
+{% load my_tags %}
 {% block content %}
 
 <div class="container col-8 mt-2 mb-5">
@@ -58,7 +58,7 @@
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <a href="{% url 'distribution:log_detail' log.pk %}" type="button"
                        class="btn btn-sm btn-outline-secondary">View</a>
-                    {% if not user.is_staff %}
+                    {% if not user|has_group:"manager" %}
                     <a href="{% url 'distribution:log_delete' log.pk %}" type="button"
                        class="btn btn-sm btn-outline-secondary">Delete</a>
                     {% endif %}
