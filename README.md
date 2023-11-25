@@ -1,4 +1,5 @@
 # Aleksey Khadkov
+## Курсовая 6
 
 ## Для подключения данных создать файл `.env`, добавить в него :
 
@@ -17,6 +18,6 @@
 
 ## Запустить крон в ручную командой `python manage.py crontab add`.
 
+## Запустить Рассылку командой `python manage.py cron_mailing`.
 
-## Курсовая 6 :
-
+## Загрузить тестовые статьи из блога `python manage.py loaddata blog_data.json`.
