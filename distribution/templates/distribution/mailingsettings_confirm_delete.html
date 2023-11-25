@@ -2,14 +2,15 @@
 
 {% block content %}
 
-<div class="text-center container">
+<div class="container">
     <div class="card col-8">
         <div class="card-body">
 
-            <h5 class="card-title">Can yoy delete distribution:</h5>
+            <h5 class="card-title">Хотите удалить рассылку:</h5>
             <p class="card-title">created_at: {{ object.created_at }}</p>
             <p class="card-title">start_time: {{ object.start_time }}</p>
             <p class="card-title">end_time: {{ object.end_time }}</p>
+            <p class="card-title">next_send: {{ object.next_send }}</p>
             <p class="card-title">periodicity: {{ object.periodicity }}</p>
             <p class="card-title">status: {{ object.status }}</p>
             <p class="card-title">message: {{ object.message.title|truncatechars:20 }}</p>

@@ -6,19 +6,20 @@
     <div class="card col-8">
         <div class="card-body">
 
-            <p class="card-text mb-3">time: {{ object.time }}</p>
-            <p class="card-text mb-3">status: {{ object.status }}</p>
-            <p class="card-text mb-3">server_response: {{ object.server_response }}</p>
+            <p class="card-text mb-3">Дата попытки: {{ object.time }}</p>
+            <p class="card-text mb-3">Статус: {{ object.status }}</p>
+            <p class="card-text mb-3">Ответ сервера: {{ object.server_response }}</p>
+            {% if user.is_staff %}
+            <p class="card-text mb-3">Автор: {{ object.owner }}</p>
+            {% endif %}
 
-
+            <a href="{% url 'distribution:view' object.mailing.pk %}" type="button"
+               class="btn btn-sm btn-outline-secondary">К рассылке</a>
         </div>
         <div class="card-footer">
 
-            <p class="card-text mb-3">mailing_list: {{ object.mailing|truncatechars:25 }}</p>
             <a type="button" href="{% url 'distribution:log_list'%}"
                class="btn btn-lg btn-block btn-outline-primary">return</a>
-            <a href="{% url 'distribution:view' object.mailing.pk %}" type="button"
-               class="btn btn-sm btn-outline-secondary">Mailing View</a>
 
         </div>
     </div>
