@@ -68,7 +68,7 @@ def send_mailing(mailing):
             error_message = error
     finally:
         MailingLog.objects.create(
-            status = status,
+            status=status,
             server_response=error_message,
             mailing=mailing,
             client=mailing.clients.all(),
@@ -102,4 +102,3 @@ def send_mailing(mailing):
     #             owner=mailing.owner
     #         )
     #         log.save()
-    #     return log
