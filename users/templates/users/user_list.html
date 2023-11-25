@@ -17,6 +17,7 @@
         <tbody>
 
         {% for user in object_list %}
+        {% if not user.is_superuser %}
 
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
@@ -34,8 +35,9 @@
                 <a href="{% url 'users:toggle_active' user.pk %}" type="button"
                    class="btn btn-danger">False</a>
             </td>
-            {% endif %}
         </tr>
+        {% endif %}
+        {% endif %}
         {% endfor %}
 
         </tbody>
